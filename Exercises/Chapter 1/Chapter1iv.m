@@ -19,9 +19,9 @@
 % To find the CE, equalize the expected utility with the utility function
 % and derive x: 
 
-% - exp[0.5*s²*r²-mu*r] = - exp(-rx) <=> x =  -(0.5*s²*r) - mu <=> 
+% - exp[0.5*sÂ²*rÂ²-mu*r] = - exp(-rx) <=> x =  -(0.5*sÂ²*r) - mu <=> 
 
-% x = mu -0.5r*s² --> the certainty equivalent.
+% x = mu -0.5*r*sÂ² --> the certainty equivalent.
 
 % Note that the value of x is the certainty equivalent depends on how risk
 % averse the consumer is, but als on the mean and variance of x (be it a
@@ -31,8 +31,8 @@
 % gets utility associated with that x. Also remember that when x<g, the
 % consumer simply receives g. 
 
-% E(U) = E(U|x<g) +  E(U|x>g) <=> E(U) = -exp(-r*g) +
-% E[u|x>g]
+% E(U) = E(U|x<g)*Phi(x<g)+  E(U|x>g)*(1-*Phi(x<g))
+% <=> E(U) = -exp(-r*g)*Phi(x<g)+ E[u|x>g]*(1-*Phi(x<g))
 
 % (d) We now assume x is instead drawn from a standard normal distribution
 % with mean 0 and variance 1. Remember that the consumer need not pay
@@ -40,7 +40,7 @@
 
 [g, r] = meshgrid([-3:0.1:3], [0:0.1:1.5])
 
-u = Surplus(g,r);
+[ub,ua,sp] = Surplus(g,r);
 
-surfc(g, r, u) 
+surfc(g, r, sp) 
 
